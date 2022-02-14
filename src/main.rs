@@ -1,21 +1,17 @@
-mod car;
-use car::Car;
+use spoofylightslib::frame::{algos::Algos, Frame, JavaFmt};
+use std::{io::Write, net::TcpStream};
+use std::{thread, time};
+
 fn main() {
-    println!("Creating car...\n");
-    let mut e = Car::new(20.0, 10.0);
-    println!("{:#?}\n", e);
-
-    let gas = 4.5;
-    println!("Adding {} gallons of gas..\n", gas);
-    e.add_gas(gas);
-    println!("{:#?}\n", e);
-
-    println!("Filling the tank.\n");
-    e.fill_tank();
-    println!("{:#?}\n", e);
-
-    let miles = 14.0;
-    println!("Driving for {} miles...\n", miles);
-    e.drive(miles);
-    println!("{:#?}", e);
+    let framebuffer = time::Duration::from_millis(1000 / 25);
+    let mut f = Frame::new(Algos::hue_fade);
+    let mut stream = TcpStream::connect("127.0.0.1:12000").expect("Failed to connect.");
+    Frame::tick(&mut f, 1);
+    for i in 0..3000 {
+        stream.write(Frame::jfmt(&f).as_bytes()).ok();
+        thread::sleep(framebuffer);
+        Frame::tick(&mut f, i * 3);
+    }
+    stream.write(b".").ok();
+    stream.shutdown(std::net::Shutdown::Both).ok();
 }

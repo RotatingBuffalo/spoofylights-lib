@@ -1,0 +1,48 @@
+[package]
+name = "rpi-led-matrix"
+description = "Bindings for Hzeller's RPi-RGB-Led-Matrix"
+version = "0.4.0"
+authors = [
+    "Vincent Pasquier <vincentpasquier@posteo.net>",
+    "Tyler Holmes <tyler@holmesengineering.com>",
+    "Broderick Carlin <broderick.carlin@gmail.com>",
+]
+repository = "https://github.com/rust-rpi-led-matrix/rust-rpi-rgb-led-matrix"
+homepage = "https://docs.rs/rpi-led-matrix/"
+license = "GPL-3.0"
+readme = "README.md"
+edition = "2021"
+keywords = ["rpi", "raspberry-pi", "led-matrix"]
+categories = ["embedded", "no-std"]
+
+[dependencies]
+libc = "0.2"
+rpi-led-matrix-sys = { version = "0.2", path = "../rpi-led-matrix-sys" }
+embedded-graphics-core = { version = "0.3", optional = true }
+clap = { version = "3.0", optional = true, features = ["cargo"] }
+
+[dev-dependencies]
+embedded-graphics = "0.7"
+serial_test = "0.5"
+
+[features]
+default = ["embeddedgraphics"]
+embeddedgraphics = ["embedded-graphics-core"]
+args = ["clap"]
+c-stubs = ["rpi-led-matrix-sys/c-stubs"]
+stdcpp-static-link = ["rpi-led-matrix-sys/stdcpp-static-link"]
+
+[[example]]
+name = "arguments"
+required-features = ["args"]
+
+[[example]]
+name = "c-api-basic"
+required-features = ["args"]
+
+[[example]]
+name = "embedded-graphics-basic"
+required-features = ["args", "embeddedgraphics"]
+
+[package.metadata.docs.rs]
+all-features = true

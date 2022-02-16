@@ -30,7 +30,7 @@ impl Raymond for Hardware {
     fn send_frame(&mut self, f: &mut Frame) {
         for x in 0..32 {
             for y in 0..32 {
-                self.matrix.canvas().set(
+                self.matrix.set(
                     x,
                     y,
                     &f.this[(x as usize, y as usize)].to_led_color().clone(),

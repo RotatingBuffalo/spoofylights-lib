@@ -14,6 +14,7 @@ impl Hardware {
     pub fn new() -> Hardware {
         let mut options = LedMatrixOptions::new();
         options.set_hardware_mapping("adafruit-hat");
+        options.set_limit_refresh(30);
         let m = LedMatrix::new(Some(options), None).unwrap();
         let c = m.offscreen_canvas();
         return Hardware {

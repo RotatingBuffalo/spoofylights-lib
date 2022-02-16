@@ -30,7 +30,7 @@ impl LedCanvas {
         }
         (width as i32, height as i32)
     }
-
+    impl Copy for LedCanvas {}
     /// Sets the pixel at the given coordinate to the given color.
     pub fn set(&mut self, x: i32, y: i32, color: &LedColor) {
         unsafe {

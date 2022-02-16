@@ -26,13 +26,13 @@ impl Raymond for Hardware {
                         y,
                         &f.this[(x as usize, y as usize)].to_led_color().clone(),
                     );
-                    self.matrix.swap(self.canvas);
+                    self.matrix.swap(self.canvas.clone());
                 }
             }
         }
     }
     fn close(&mut self) {
         self.canvas.clear();
-        self.matrix.swap(self.canvas);
+        self.matrix.swap(self.canvas.clone());
     }
 }

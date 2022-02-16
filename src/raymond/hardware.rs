@@ -14,7 +14,6 @@ impl Hardware {
     pub fn new() -> Hardware {
         let mut options = LedMatrixOptions::new();
         options.set_hardware_mapping("adafruit-hat");
-        options.set_limit_refresh(15);
         let m = LedMatrix::new(Some(options), None).unwrap();
         let c = m.offscreen_canvas();
         return Hardware {
@@ -31,14 +30,14 @@ impl Raymond for Hardware {
     fn send_frame(&mut self, f: &mut Frame) {
         for x in 0..32 {
             for y in 0..32 {
-                self.canvas.set(
+                self.matrix.canvas.set(
                     x,
                     y,
                     &f.this[(x as usize, y as usize)].to_led_color().clone(),
                 );
             }
         }
-        self.canvas = self.matrix.swap(self.canvas);
+        self.canvas = self.matrix.swap(self.matrix.canvas);
     }
     fn close(&mut self) {
         self.canvas.clear();

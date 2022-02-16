@@ -26,7 +26,7 @@ impl Raymond for Hardware {
                         y,
                         &f.this[(x as usize, y as usize)].to_led_color().clone(),
                     );
-                    let c = self.canvas;
+                    let c = &self.canvas;
                     self.matrix.swap(c);
                 }
             }
@@ -34,7 +34,7 @@ impl Raymond for Hardware {
     }
     fn close(&mut self) {
         self.canvas.clear();
-        let c = self.canvas;
+        let c = &self.canvas;
         self.matrix.swap(c);
     }
 }

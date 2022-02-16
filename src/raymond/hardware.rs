@@ -22,7 +22,7 @@ impl Raymond for Hardware {
             for y in 0..32 {
                 for y in 0..32 {
                     self.canvas
-                        .set(x, y, &f.this[(y * 32 + x) as usize].to_led_color());
+                        .set(x, y, &f.this[(x as usize, y as usize)].to_led_color());
                     self.matrix.swap(self.canvas);
                 }
             }

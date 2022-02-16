@@ -10,6 +10,8 @@ struct Hardware {
     canvas: LedCanvas,
 }
 #[cfg(target_arch = "arm")]
+impl Copy for LedMatrix {}
+#[cfg(target_arch = "arm")]
 impl Raymond for Hardware {
     fn connect(&mut self) {
         let mut options = LedMatrixOptions::new();
@@ -23,13 +25,13 @@ impl Raymond for Hardware {
                 for y in 0..32 {
                     self.canvas
                         .set(x, y, &f.this[(x as usize, y as usize)].to_led_color());
-                    self.matrix.swap(&self.canvas);
+                    self.matrix.swap(self.canvas);
                 }
             }
         }
     }
     fn close(&mut self) {
         self.canvas.clear();
-        self.matrix.swap(&self.canvas);
+        self.matrix.swap(self.canvas);
     }
 }

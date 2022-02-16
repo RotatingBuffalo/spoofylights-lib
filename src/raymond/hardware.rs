@@ -17,19 +17,19 @@ impl Raymond for Hardware {
         self.matrix = LedMatrix::new(Some(options), None).unwrap();
         self.canvas = self.matrix.offscreen_canvas();
     }
-    fn send_frame(&mut self, f: &Frame) {
+    fn send_frame(&mut self, f: &mut Frame) {
         for x in 0..32 {
             for y in 0..32 {
                 for y in 0..32 {
                     self.canvas
                         .set(x, y, &f.this[(x as usize, y as usize)].to_led_color());
-                    self.matrix.swap(self.canvas);
+                    self.matrix.swap(&self.canvas);
                 }
             }
         }
     }
     fn close(&mut self) {
         self.canvas.clear();
-        self.matrix.swap(self.canvas);
+        self.matrix.swap(&self.canvas);
     }
 }

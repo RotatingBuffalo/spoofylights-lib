@@ -9,7 +9,7 @@ fn main() {
     let mut target = JavaSimulator::new();
     target.connect();
     for i in 0..3000 {
-        target.send_frame(&f);
+        target.send_frame(&mut f);
         thread::sleep(framebuffer);
         Frame::tick(&mut f, i * 3);
     }

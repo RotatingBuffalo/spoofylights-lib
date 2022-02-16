@@ -24,7 +24,7 @@ impl Raymond for JavaSimulator {
             println!("failed to connect to listener.")
         }
     }
-    fn send_frame(&mut self, f: &Frame) {
+    fn send_frame(&mut self, f: &mut Frame) {
         self.stream.write(Frame::jfmt(&f).as_bytes()).ok();
     }
     fn close(&mut self) {

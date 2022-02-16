@@ -5,7 +5,7 @@ use crate::raymond::Raymond;
 #[cfg(target_arch = "arm")]
 use rpi_led_matrix::{LedCanvas, LedMatrix, LedMatrixOptions};
 #[cfg(target_arch = "arm")]
-struct Hardware {
+pub struct Hardware {
     matrix: LedMatrix,
     canvas: LedCanvas,
 }

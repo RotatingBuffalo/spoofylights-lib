@@ -12,7 +12,7 @@ struct Hardware {
 #[cfg(target_arch = "arm")]
 impl Raymond for Hardware {
     fn connect(&mut self) {
-        let options = LedMatrixOptions::new();
+        let mut options = LedMatrixOptions::new();
         options.set_hardware_mapping("adafruit-hat");
         self.matrix = LedMatrix::new(Some(options), None).unwrap();
         self.canvas = self.matrix.offscreen_canvas();
@@ -22,7 +22,7 @@ impl Raymond for Hardware {
             for y in 0..32 {
                 for y in 0..32 {
                     self.canvas
-                        .set(x, y, &f.this[(x as usize, y as usize)].to_led_color());
+                        .set(x, y, f.this[(x as usize, y as usize)].to_led_color());
                     self.matrix.swap(self.canvas);
                 }
             }

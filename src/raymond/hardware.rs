@@ -34,6 +34,6 @@ impl Raymond for Hardware {
     fn close(&mut self) {
         self.canvas.clear();
         let c = &self.canvas;
-        self.matrix.swap(*c);
+        self.matrix.swap(self.canvas);
     }
 }

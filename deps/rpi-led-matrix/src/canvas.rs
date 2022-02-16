@@ -12,6 +12,7 @@ use crate::{LedColor, LedFont};
 /// let mut canvas = matrix.canvas();
 /// canvas.fill(&LedColor { red: 128, green: 128, blue: 128 });
 /// ```
+#[derive(Clone, Copy)]
 pub struct LedCanvas {
     pub(crate) handle: *mut ffi::CLedCanvas,
 }
@@ -30,7 +31,6 @@ impl LedCanvas {
         }
         (width as i32, height as i32)
     }
-    impl Copy for LedCanvas {}
     /// Sets the pixel at the given coordinate to the given color.
     pub fn set(&mut self, x: i32, y: i32, color: &LedColor) {
         unsafe {

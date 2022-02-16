@@ -1,4 +1,6 @@
 use core::fmt;
+#[cfg(target_arch = "arm")]
+use rpi_led_matrix::LedColor;
 use std::fmt::Display;
 #[derive(Debug, Clone)]
 pub struct Pixel {
@@ -22,6 +24,14 @@ impl Pixel {
                 b: tuple.2,
             };
         }
+    }
+    #[cfg(target_arch = "arm")]
+    pub fn to_led_color() -> LedColor {
+        return LedColor {
+            red: r,
+            green: g,
+            blue: b,
+        };
     }
 }
 impl Display for Pixel {

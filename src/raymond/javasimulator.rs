@@ -1,24 +1,34 @@
 use std::{
     io::Write,
-    net::{Shutdown, TcpListener, TcpStream},
+    net::{Shutdown, TcpStream},
 };
 
 use crate::frame::{Frame, JavaFmt};
-struct JavaSimulator {
+
+use super::Raymond;
+pub struct JavaSimulator {
     stream: TcpStream,
 }
 impl JavaSimulator {
-    pub fn connect(&mut self) {
-        if let Ok(stream) = TcpStream::connect("127.0.0.1:12000") {
+    pub fn new() -> JavaSimulator {
+        JavaSimulator {
+            stream: (TcpStream::connect("127.0.0.1:12000").unwrap()),
+        }
+    }
+}
+impl Raymond for JavaSimulator {
+    fn connect(&mut self) {
+        if let Ok(_stream) = TcpStream::connect("127.0.0.1:12000") {
             println!("connected to listener.")
         } else {
             println!("failed to connect to listener.")
         }
     }
-    pub fn sendFrame(&mut self, f: Frame) {
-        self.stream.write(Frame::jfmt(&f).as_bytes());
+    fn send_frame(&mut self, f: &Frame) {
+        self.stream.write(Frame::jfmt(&f).as_bytes()).ok();
     }
-    pub fn close(&mut self) {
+    fn close(&mut self) {
+        self.stream.write(b",").ok();
         self.stream
             .shutdown(Shutdown::Both)
             .expect("Shutdown failed.")

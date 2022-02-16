@@ -9,3 +9,5 @@ bench = false
 
 [dependencies]
 array2d = "0.2.1"
+[target.arm-unknown-linux-gnueabihf]
+rpi-led-matrix = "0.4.0"

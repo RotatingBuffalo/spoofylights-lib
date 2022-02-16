@@ -10,6 +10,16 @@ pub struct Hardware {
     canvas: LedCanvas,
 }
 #[cfg(target_arch = "arm")]
+impl Hardware {
+    pub fn new() -> Hardware {
+        let mut options = LedMatrixOptions::new();
+        options.set_hardware_mapping("adafruit-hat");
+        m = LedMatrix::new(Some(options), None).unwrap();
+        c = m.offscreen_canvas();
+        return Hardware { m, c };
+    }
+}
+#[cfg(target_arch = "arm")]
 impl Raymond for Hardware {
     fn connect(&mut self) {
         let mut options = LedMatrixOptions::new();

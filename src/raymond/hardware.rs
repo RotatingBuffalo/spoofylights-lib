@@ -16,7 +16,10 @@ impl Hardware {
         options.set_hardware_mapping("adafruit-hat");
         m = LedMatrix::new(Some(options), None).unwrap();
         c = m.offscreen_canvas();
-        return Hardware { m, c };
+        return Hardware {
+            matrix: m,
+            canvas: c,
+        };
     }
 }
 #[cfg(target_arch = "arm")]

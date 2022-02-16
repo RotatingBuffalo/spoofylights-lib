@@ -1,7 +1,5 @@
 #[cfg(target_arch = "arm")]
 use rpi_led_matrix::{LedCanvas, LedMatrix, LedMatrixOptions};
-
-use crate::frame::Frame;
 #[cfg(target_arch = "arm")]
 struct Hardware {
     matrix: LedMatrix,
@@ -17,17 +15,18 @@ impl Raymond for Hardware {
     }
     fn send_frame(&mut self, f: &Frame) {
         for x in 0..32 {
-            for y in 0..32 {            for y in 0..32 {
-
-                self.canvas.set(x, y, f.this.as_row_major()[y * 32 + x]);
-                self.canvas.swap(self.canvas);
+            for y in 0..32 {
+                for y in 0..32 {
+                    self.canvas.set(x, y, f.this.as_row_major()[y * 32 + x]);
+                    self.canvas.swap(self.canvas);
+                }
             }
         }
     }
     fn close(&mut self) {
         self.canvas.clear();
-        self.matrix.swap(canvas);
-        drop(canvas);
-        drop(matrix);
+        self.matrix.swap(self.canvas);
+        drop(self.canvas);
+        drop(self.matrix);
     }
 }

@@ -28,9 +28,9 @@ impl Pixel {
     #[cfg(target_arch = "arm")]
     pub fn to_led_color() -> LedColor {
         return LedColor {
-            red: r,
-            green: g,
-            blue: b,
+            red: self.r,
+            green: self.g,
+            blue: self.b,
         };
     }
 }

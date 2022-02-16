@@ -2,6 +2,7 @@ use array2d::Array2D;
 use pixel::Pixel;
 use std::fmt;
 use std::fmt::Formatter;
+#[derive(Clone)]
 pub struct Frame {
     pub this: Array2D<Pixel>,
     pub algo: fn(f: &mut Frame, i: Option<i32>),

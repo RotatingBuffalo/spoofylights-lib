@@ -10,5 +10,5 @@ bench = false
 [dependencies]
 array2d = "0.2.1"
 rpi-led-matrix = "0.4.0"
-[target.'cfg(target_arch = "arm-unknown-linux-gnueabihf")'.dependencies]
+[target.'cfg(target_arch = "arm")'.dependencies]
 rpi-led-matrix = "0.4.0"

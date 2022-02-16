@@ -22,7 +22,7 @@ impl Raymond for Hardware {
             for y in 0..32 {
                 for y in 0..32 {
                     self.canvas.set(x, y, f.this.as_row_major()[y * 32 + x]);
-                    self.canvas.swap(self.canvas);
+                    self.matrix.swap(self.canvas);
                 }
             }
         }

@@ -1,4 +1,6 @@
 #[cfg(target_arch = "arm")]
+use crate::frame::Frame;
+#[cfg(target_arch = "arm")]
 use rpi_led_matrix::{LedCanvas, LedMatrix, LedMatrixOptions};
 #[cfg(target_arch = "arm")]
 struct Hardware {

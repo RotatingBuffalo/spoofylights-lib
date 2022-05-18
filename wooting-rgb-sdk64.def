@@ -1,0 +1,10 @@
+EXPORTS
+wooting_rgb_kbd_connected
+wooting_rgb_set_disconnected
+wooting_rgb_reset
+wooting_rgb_direct_set_key
+wooting_rgb_direct_reset_key
+wooting_rgb_array_update_keyboard
+wooting_rgb_array_auto_update
+wooting_rgb_array_set_single
+wooting_rgb_array_set_full

@@ -76,7 +76,7 @@ impl Algos {
             i = i + 5;
         }
     }
-    pub fn rgb_wave(f: &mut Frame, counter: Option<i32>) {
+    pub fn rgb_wave(_f: &mut Frame, _counter: Option<i32>) {
         unimplemented!("yeah i haven't actually made rgb_wave yet.");
     }
 }

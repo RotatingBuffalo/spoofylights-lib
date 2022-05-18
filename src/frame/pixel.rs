@@ -4,9 +4,9 @@ use rpi_led_matrix::LedColor;
 use std::fmt::Display;
 #[derive(Debug, Clone)]
 pub struct Pixel {
-    r: u8,
-    g: u8,
-    b: u8,
+    pub r: u8,
+    pub g: u8,
+    pub b: u8,
 }
 impl Pixel {
     pub fn new(yeah: Option<(u8, u8, u8)>) -> Pixel {
